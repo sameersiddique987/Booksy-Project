@@ -1,4 +1,4 @@
-// components/Footer.js
+
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -34,7 +34,7 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-4">Connect</h3>
           <div className="flex space-x-4 mb-2">
-            <a href="https://www.facebook.com/Goodreads/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/sameer.siddiq.144" target="_blank" rel="noopener noreferrer">
               <Image src="https://s.gr-assets.com/assets/site_footer/footer_facebook-ea4ab848f8e86c5f5c98311bc9495a1b.svg" alt="Facebook" width={24} height={24} />
             </a>
             <a href="https://twitter.com/goodreads" target="_blank" rel="noopener noreferrer">
@@ -42,10 +42,10 @@ const Footer = () => {
             </a>
           </div>
           <div className="flex space-x-4">
-            <a href="https://www.instagram.com/goodreads/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/sameer.siddique.ss/" target="_blank" rel="noopener noreferrer">
               <Image src="https://s.gr-assets.com/assets/site_footer/footer_instagram-d59e3887020f12bcdb12e6c539579d85.svg" alt="Instagram" width={24} height={24} />
             </a>
-            <a href="https://www.linkedin.com/company/goodreads-com/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/sameer-siddique-45575a2b6/" target="_blank" rel="noopener noreferrer">
               <Image src="https://s.gr-assets.com/assets/site_footer/footer_linkedin-5b820f4703eff965672594ef4d10e33c.svg" alt="LinkedIn" width={24} height={24} />
             </a>
           </div>

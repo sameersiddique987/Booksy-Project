@@ -5,6 +5,7 @@ import HeroSection from "../app/components/heroSection";
 import Navbar from "../app/components/navbar"
 import Footer from "./components/footer";
 import ImageRow from "./components/imageRow";
+import WhatsAppButton from "./components/whatsAppButton";
 export default function Home() {
   return (
     <>
@@ -12,6 +13,8 @@ export default function Home() {
    <HeroSection/>
    <FeaturedBooks/>
       <ImageRow />
+      {/* <BlogImage  /> */}
+      <WhatsAppButton/>
     <Footer/>
 
 

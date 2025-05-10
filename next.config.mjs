@@ -1,15 +1,11 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {};
-
-// export default nextConfig;
-
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-      domains: ['s.gr-assets.com'], 
-    },
-  };
-  
-  export default nextConfig;
-  
+  images: {
+    domains: ['cdn.prod.website-files.com',
+      's.gr-assets.com',
+    'www.cockroachlabs.com' ],
+  },
+};
+
+export default  nextConfig;
