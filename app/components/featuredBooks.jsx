@@ -1,10 +1,16 @@
+
+
+
+
 'use client';
 import { useState, useEffect } from 'react';
+import { motion } from "framer-motion";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const FeaturedBooks = () => {
   useEffect(() => {
@@ -60,7 +66,7 @@ const FeaturedBooks = () => {
     },
     {
       title: "1984",
-      image: "https://t4.ftcdn.net/jpg/05/02/08/27/360_F_502082774_UenZg3MKBnlpiyZIXB0k2uEXdfaxgZ1k.jpg",
+      image: "https://i.etsystatic.com/8099146/r/il/6a463f/5416970317/il_fullxfull.5416970317_26ju.jpg",
       description: "A dystopian novel about surveillance and control.",
       price: "$13.49",
       readLink: "https://www.planetebook.com/free-ebooks/1984.pdf"
@@ -74,7 +80,7 @@ const FeaturedBooks = () => {
     },
     {
       title: "Becoming",
-      image: "https://www.shutterstock.com/image-photo/ideas-money-making-mixed-media-600nw-1233133540.jpg",
+      image: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1528206996i/38746485.jpg",
       description: "The memoir of former First Lady Michelle Obama.",
       price: "$17.99",
       readLink: "https://icrrd.com/public/media/15-05-2021-133541Becoming-Michelle-Obama.pdf"
@@ -95,7 +101,7 @@ const FeaturedBooks = () => {
     },
     {
       title: "Educated",
-      image: "https://www.shutterstock.com/image-photo/stack-educational-books-apple-on-260nw-1665813628.jpg",
+      image: "https://st.depositphotos.com/1032463/5117/i/450/depositphotos_51170269-stock-photo-graduation-hat-and-diploma-on.jpg",
       description: "A memoir about growing up and self-education.",
       price: "$14.25",
       readLink: "https://archive.org/details/educated-a-memoir_202403/page/n5/mode/2up"
@@ -103,6 +109,7 @@ const FeaturedBooks = () => {
   ];
 
   const [favorites, setFavorites] = useState([]);
+  const [cart, setCart] = useState([]);
 
   const toggleFavorite = (title) => {
     if (favorites.includes(title)) {
@@ -112,9 +119,13 @@ const FeaturedBooks = () => {
     }
   };
 
+  const addToCart = (book) => {
+    setCart([...cart, book]);
+  };
+
   return (
     <section
-      className=" mb-5 py-10 bg-cover bg-center bg-no-repeat"
+      className="mb-5 py-10 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1920&q=80')"
       }}
@@ -127,34 +138,55 @@ const FeaturedBooks = () => {
             <div
               key={index}
               data-aos="fade-up"
-              className="bg-white border border-gray-300 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300 relative overflow-hidden"
+              className="flex flex-col justify-between bg-white border border-gray-300 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300 relative overflow-hidden"
             >
-              <img
-                src={book.image}
-                alt={book.title}
-                className="h-72 w-full object-cover transition-all duration-500 hover:scale-110"
-              />
-              <div className="p-4">
-                <p className="text-center font-semibold text-gray-800">{book.title}</p>
+              <div>
+                <img
+                  src={book.image}
+                  alt={book.title}
+                   className="h-72 w-full object-contain transition-all duration-500 hover:scale-110"
+                    
+                  
+                />
                 <button
                   onClick={() => toggleFavorite(book.title)}
-                  className={`cursor-pointer absolute top-4 right-4 text-3xl transition-colors duration-300 ${favorites.includes(book.title) ? 'text-red-500' : 'text-gray-400'}`}
+                  className={`absolute top-4 right-4 text-2xl bg-black/40 rounded-full p-2 transition duration-300 ${
+                    favorites.includes(book.title) ? 'text-red-500' : 'text-white'
+                  }`}
                 >
                   <FontAwesomeIcon icon={favorites.includes(book.title) ? solidHeart : regularHeart} />
                 </button>
-              </div>
-              <div className="my-10 flex gap-3 px-4">
-                <button className="bg-gradient-to-r from-yellow-50 to-yellow-200 text-black px-6 py-2 rounded cursor-pointer shadow-md hover:bg-yellow-300 transition">
-                  Checkout
+
+                <button
+                  onClick={() => addToCart(book)}
+                  className="absolute top-16 right-4 text-2xl text-white bg-black/40 rounded-full p-2 hover:text-yellow-500 transition duration-300"
+                >
+                  <FontAwesomeIcon icon={faShoppingCart} />
                 </button>
-                <a
+
+                <div className="p-4">
+                  <p className="text-center font-semibold text-gray-800">{book.title}</p>
+                </div>
+              </div>
+
+              <div className="mt-auto p-4 flex justify-between gap-3">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex-1 bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition"
+                >
+                  CheckOut
+                </motion.button>
+                <motion.a
                   href={book.readLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-blue-500 text-white px-6 py-2 rounded shadow-md hover:bg-blue-600 transition"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex-1 bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 text-center transition"
                 >
                   Read
-                </a>
+                </motion.a>
               </div>
             </div>
           ))}

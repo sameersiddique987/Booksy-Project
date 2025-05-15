@@ -68,6 +68,7 @@
 
 
 'use client';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -89,14 +90,16 @@ function Navbar() {
   return (
     <nav className="bg-white border-b border-gray-300 shadow-md transition duration-300">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        {/* Logo */}
-        <a href="/" className="flex items-center space-x-3">
-          <img
-            src="https://noirenailandlashbar.com/uploads/fnail0zpqm2is/webp/png/filemanager/logo/Booksy.webp"
-            className="h-20"
-            alt="Booksy Logo"
-          />
-        </a>
+        
+<a href="/" className="flex items-center space-x-3">
+  <Image
+    src="/Logo.png"
+    width={80}
+    height={80}
+    alt="Booksy Logo"
+     className="object-contain rounded"
+  />
+</a>
 
         {/* Hamburger Icon (Mobile) */}
         <button
@@ -127,7 +130,7 @@ function Navbar() {
               <FontAwesomeIcon icon={solidCart} />
             </a>
             {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
                 {cartCount}
               </span>
             )}
@@ -146,7 +149,7 @@ function Navbar() {
               <input
                 type="text"
                 placeholder="Search products..."
-                className="w-full px-4 py-2 pl-10 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-3 pl-10 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
               <FontAwesomeIcon
                 icon={faSearch}

@@ -1,10 +1,9 @@
-
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-yellow-50 text-gray-800 py-10 border-t">
+    <footer className="bg-gray-800 text-white mt-5 pt-10 pb-5 border-t border-gray-700">
       <div className="container mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Company */}
         <div>
@@ -32,24 +31,49 @@ const Footer = () => {
 
         {/* Connect */}
         <div>
-          <h3 className="text-lg font-semibold mb-4">Connect</h3>
-          <div className="flex space-x-4 mb-2">
-            <a href="https://www.facebook.com/sameer.siddiq.144" target="_blank" rel="noopener noreferrer">
-              <Image src="https://s.gr-assets.com/assets/site_footer/footer_facebook-ea4ab848f8e86c5f5c98311bc9495a1b.svg" alt="Facebook" width={24} height={24} />
-            </a>
-            <a href="https://twitter.com/goodreads" target="_blank" rel="noopener noreferrer">
-              <Image src="https://s.gr-assets.com/assets/site_footer/footer_twitter-126b3ee80481a763f7fccb06ca03053c.svg" alt="Twitter" width={24} height={24} />
-            </a>
-          </div>
-          <div className="flex space-x-4">
-            <a href="https://www.instagram.com/sameer.siddique.ss/" target="_blank" rel="noopener noreferrer">
-              <Image src="https://s.gr-assets.com/assets/site_footer/footer_instagram-d59e3887020f12bcdb12e6c539579d85.svg" alt="Instagram" width={24} height={24} />
-            </a>
-            <a href="https://www.linkedin.com/in/sameer-siddique-45575a2b6/" target="_blank" rel="noopener noreferrer">
-              <Image src="https://s.gr-assets.com/assets/site_footer/footer_linkedin-5b820f4703eff965672594ef4d10e33c.svg" alt="LinkedIn" width={24} height={24} />
-            </a>
-          </div>
-        </div>
+  <h3 className="text-lg font-semibold mb-4 text-white">Connect</h3>
+  <div className="flex space-x-4 mb-2">
+    <a href="https://www.facebook.com/sameer.siddiq.144" target="_blank" rel="noopener noreferrer">
+      <Image
+        src="https://s.gr-assets.com/assets/site_footer/footer_facebook-ea4ab848f8e86c5f5c98311bc9495a1b.svg"
+        alt="Facebook"
+        width={24}
+        height={24}
+        className="invert"
+      />
+    </a>
+    <a href="https://twitter.com/goodreads" target="_blank" rel="noopener noreferrer">
+      <Image
+        src="https://s.gr-assets.com/assets/site_footer/footer_twitter-126b3ee80481a763f7fccb06ca03053c.svg"
+        alt="Twitter"
+        width={24}
+        height={24}
+        className="invert"
+      />
+    </a>
+  </div>
+  <div className="flex space-x-4">
+    <a href="https://www.instagram.com/sameer.siddique.ss/" target="_blank" rel="noopener noreferrer">
+      <Image
+        src="https://s.gr-assets.com/assets/site_footer/footer_instagram-d59e3887020f12bcdb12e6c539579d85.svg"
+        alt="Instagram"
+        width={24}
+        height={24}
+        className="invert"
+      />
+    </a>
+    <a href="https://www.linkedin.com/in/sameer-siddique-45575a2b6/" target="_blank" rel="noopener noreferrer">
+      <Image
+        src="https://s.gr-assets.com/assets/site_footer/footer_linkedin-5b820f4703eff965672594ef4d10e33c.svg"
+        alt="LinkedIn"
+        width={24}
+        height={24}
+        className="invert"
+      />
+    </a>
+  </div>
+</div>
+
 
         {/* App Links */}
         <div>
@@ -62,9 +86,14 @@ const Footer = () => {
               <Image src="https://s.gr-assets.com/assets/app/badge-android-desktop-home-0f517cbae4d56c88a128d27a7bea1118.png" alt="Android App" width={135} height={40} />
             </a>
           </div>
-          <p className="text-xs mt-4">© 2025 Goodreads, Inc.</p>
-          <p className="text-xs"><Link href="/toggle_mobile" className="hover:underline">Mobile version</Link></p>
+          <p className="text-xs mt-4 text-gray-400">© 2025 Goodreads, Inc.</p>
+          <p className="text-xs text-gray-400"><Link href="/toggle_mobile" className="hover:underline">Mobile version</Link></p>
         </div>
+      </div>
+
+      {/* Prepared By */}
+      <div className="text-center mt-5 text-sm text-gray-400 pt-5 border-t border-gray-700">
+        Prepared by <span className="font-semibold text-white">Sameer Siddique</span>
       </div>
     </footer>
   );
