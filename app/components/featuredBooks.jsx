@@ -173,7 +173,7 @@ const FeaturedBooks = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex-1 bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition"
+                  className="flex-1 bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition"
                 >
                   CheckOut
                 </motion.button>
@@ -183,7 +183,7 @@ const FeaturedBooks = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex-1 bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 text-center transition"
+                  className="flex-1 bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 text-center transition"
                 >
                   Read
                 </motion.a>
