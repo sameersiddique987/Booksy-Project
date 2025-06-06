@@ -26,14 +26,14 @@ const HeroSection = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-yellow-600 text-white px-6 py-3 rounded-full hover:bg-yellow-700 transition"
+              className="bg-yellow-600 text-white px-6 py-3 rounded-lg hover:bg-yellow-700 transition"
             >
               Shop Now
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border border-yellow-600 text-yellow-600 px-6 py-3 rounded-full hover:bg-yellow-100 transition"
+              className="border border-yellow-600 text-yellow-600 px-6 py-3 rounded-lg hover:bg-yellow-100 transition"
             >
               Browse Categories
             </motion.button>

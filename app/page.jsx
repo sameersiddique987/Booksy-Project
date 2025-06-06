@@ -1,4 +1,4 @@
-// import Image from "next/image"
+/// import Image from "next/image"
 
 import FeaturedBooks from "../app/components/featuredBooks";
 import HeroSection from "../app/components/heroSection";
@@ -16,7 +16,6 @@ export default function Home() {
       {/* <BlogImage  /> */}
       <WhatsAppButton/>
     <Footer/>
-
 
     </>
   );
