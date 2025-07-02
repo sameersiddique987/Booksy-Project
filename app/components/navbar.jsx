@@ -1,4 +1,3 @@
-
 'use client';
 import Image from 'next/image';
 import React, { useState } from 'react';
@@ -14,24 +13,22 @@ import {
   faHeart as regularHeart
 } from '@fortawesome/free-regular-svg-icons';
 
-function Navbar() {
+function Navbar({ onCartClick, onWishlistClick, cartCount = 0, wishlistCount = 0 }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const wishlistCount = 2;
-  const cartCount = 5;
 
   return (
     <nav className="bg-white border-b border-gray-300 shadow-md transition duration-300">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         
-<a href="/" className="flex items-center space-sx-3">
-  <Image
-    src="/Logo.png"
-    width={70}
-    height={70}
-    alt="Booksy Logo"
-     className="object-contain rounded"
-  />
-</a>
+        <a href="/" className="flex items-center space-sx-3">
+          <Image
+            src="/Logo.png"
+            width={70}
+            height={70}
+            alt="Booksy Logo"
+            className="object-contain rounded"
+          />
+        </a>
 
         {/* Hamburger Icon (Mobile) */}
         <button
@@ -44,11 +41,16 @@ function Navbar() {
 
         {/* Icons */}
         <div className="flex items-center gap-6 md:order-2">
-          {/* Wishlist */}
-          <div className="relative">
-            <a href="/wishlist" className="text-gray-700 text-2xl md:text-3xl">
+
+          {/* Wishlist Icon */}
+          <div
+            className="relative cursor-pointer"
+            onClick={onWishlistClick}
+            aria-label="Open wishlist drawer"
+          >
+            <span className="text-gray-700 text-2xl md:text-3xl">
               <FontAwesomeIcon icon={regularHeart} />
-            </a>
+            </span>
             {wishlistCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
                 {wishlistCount}
@@ -56,11 +58,15 @@ function Navbar() {
             )}
           </div>
 
-          {/* Cart */}
-          <div className="relative">
-            <a href="/cart" className="text-gray-700 text-2xl md:text-3xl">
+          {/* Cart Icon */}
+          <div
+            className="relative cursor-pointer"
+            onClick={onCartClick}
+            aria-label="Open cart drawer"
+          >
+            <span className="text-gray-700 text-2xl md:text-3xl">
               <FontAwesomeIcon icon={solidCart} />
-            </a>
+            </span>
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
                 {cartCount}
