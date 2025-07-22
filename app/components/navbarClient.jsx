@@ -1,56 +1,3 @@
-// "use client";
-// import { useEffect, useState } from "react";
-// import Navbar from "./navbar";
-// import CartDrawer from "./cartDrawer";
-// import WishlistDrawer from "./wishlistDrawer";
-
-// export default function NavbarClient() {
-//   const [cartCount, setCartCount] = useState(0);
-//   const [wishlistCount, setWishlistCount] = useState(0);
-//   const [isCartOpen, setIsCartOpen] = useState(false);
-//   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
-//   const [cartItems, setCartItems] = useState([]);
-//   const [wishlistItems, setWishlistItems] = useState([]);
-
-//   useEffect(() => {
-//     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-//     const wishlist = JSON.parse(localStorage.getItem("favorites")) || [];
-//     setCartItems(cart);
-//     setWishlistItems(wishlist);
-//     setCartCount(cart.length);
-//     setWishlistCount(wishlist.length);
-//   }, [isCartOpen, isWishlistOpen]);
-
-//   return (
-//     <>
-//       <Navbar
-//         onCartClick={() => setIsCartOpen(true)}
-//         onWishlistClick={() => setIsWishlistOpen(true)}
-//         cartCount={cartCount}
-//         wishlistCount={wishlistCount}
-//       />
-
-//       <CartDrawer
-//         isOpen={isCartOpen}
-//         onClose={() => setIsCartOpen(false)}
-//         cartItems={cartItems}
-//       />
-
-//       <WishlistDrawer
-//         isOpen={isWishlistOpen}
-//         onClose={() => setIsWishlistOpen(false)}
-//         cartItems={wishlistItems}
-//       />
-//     </>
-//   );
-// }
-
-
-
-
-
-
-
 
 "use client";
 import { useEffect, useState } from "react";
@@ -58,11 +5,12 @@ import Navbar from "./navbar";
 import CartDrawer from "./cartDrawer";
 import WishlistDrawer from "./wishlistDrawer";
 
-export default function NavbarClient() {
+export default function NavbarClient({ onSearch }) {
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const updateCounts = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -74,7 +22,6 @@ export default function NavbarClient() {
   useEffect(() => {
     updateCounts();
 
-    // Listen to custom events
     const handleCartUpdate = () => updateCounts();
     const handleWishlistUpdate = () => updateCounts();
 
@@ -87,6 +34,13 @@ export default function NavbarClient() {
     };
   }, []);
 
+  const handleSearchChange = (value) => {
+    setSearchText(value);
+    if (onSearch) {
+      onSearch(value); // send search term to Home
+    }
+  };
+
   return (
     <>
       <Navbar
@@ -94,19 +48,15 @@ export default function NavbarClient() {
         onWishlistClick={() => setIsWishlistOpen(true)}
         cartCount={cartCount}
         wishlistCount={wishlistCount}
+        searchText={searchText}
+        onSearchChange={handleSearchChange}
       />
 
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-      />
-
-      <WishlistDrawer
-        isOpen={isWishlistOpen}
-        onClose={() => setIsWishlistOpen(false)}
-      />
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <WishlistDrawer isOpen={isWishlistOpen} onClose={() => setIsWishlistOpen(false)} />
     </>
   );
 }
+
 
 

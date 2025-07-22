@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <section className="bg-gradient-to-r from-yellow-50 to-white py-16 px-4 md:px-16">
+    <section className=" mt-5 bg-gradient-to-r from-yellow-50 to-white py-16 px-4 md:px-16">
       <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
         
         {/* Text Section with animation */}

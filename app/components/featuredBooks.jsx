@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -19,13 +20,7 @@ const FeaturedBooks = ({ searchTerm = "" }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    AOS.init({
-      duration: 400,
-      easing: 'ease-out',
-      once: true,
-      
-      offset: 100,
-    });
+    AOS.init({ duration: 400, easing: 'ease-out', once: true, offset: 100 });
   }, []);
 
   useEffect(() => {
@@ -71,12 +66,23 @@ const FeaturedBooks = ({ searchTerm = "" }) => {
     }
 
     setFavorites(updatedFavorites);
-     window.dispatchEvent(new Event("wishlist-updated"));
+    window.dispatchEvent(new Event("wishlist-updated"));
   };
 
   const addToCart = (book) => {
-    if (!cart.find(item => item._id === book._id)) {
-      setCart([...cart, book]);
+    const exists = cart.find(item => item.id === book._id);
+
+    if (!exists) {
+      const cartItem = {
+        id: book._id,
+        image: book.image,
+        title: book.title,
+        description: book.description,
+        price: Number(book.price),
+        quantity: 1
+      };
+
+      setCart([...cart, cartItem]);
       toast.success('Added to Cart');
       window.dispatchEvent(new Event("cart-updated"));
     } else {
@@ -84,60 +90,24 @@ const FeaturedBooks = ({ searchTerm = "" }) => {
     }
   };
 
-  const checkoutHandler = async () => {
-    if (cart.length === 0) {
-      toast.warning('Cart is empty');
-      return;
-    }
-
-    try {
-      const res = await fetch('https://booksy-backend.vercel.app/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cartItems: cart }),
-      });
-
-      const result = await res.json();
-
-      if (res.ok) {
-        toast.success('Checkout Successful');
-        setCart([]);
-        localStorage.removeItem('cart');
-        window.dispatchEvent(new Event("cart-updated"));
-      } else {
-        toast.error(result.message || 'Checkout failed');
-      }
-    } catch (err) {
-      console.error("Checkout error:", err);
-      toast.error('Something went wrong during checkout');
-    }
-  };
-
   const filteredBooks = books.filter(book =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const renderSkeletons = () => {
-    return Array.from({ length: 8 }).map((_, index) => (
-      <div
-        key={index}
-        className="bg-white border border-gray-300 rounded-2xl shadow-md p-4 animate-pulse"
-      >
+  const renderSkeletons = () => (
+    Array.from({ length: 8 }).map((_, index) => (
+      <div key={index} className="bg-white border border-gray-300 rounded-2xl shadow-md p-4 animate-pulse">
         <div className="h-48 bg-gray-300 rounded mb-4"></div>
         <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>
         <div className="h-4 bg-gray-300 rounded w-1/2 mb-2"></div>
         <div className="h-4 bg-gray-300 rounded w-1/3"></div>
       </div>
-    ));
-  };
+    ))
+  );
 
   return (
-    <section
-      className="mb-5 py-10 bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1920&q=80')"
-      }}
-    >
+    <section className="mb-5 py-10 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1920&q=80')" }}>
       <ToastContainer position="top-right" autoClose={2000} hideProgressBar />
 
       <div className="bg-white bg-opacity-80 rounded-xl max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -149,7 +119,6 @@ const FeaturedBooks = ({ searchTerm = "" }) => {
           ) : filteredBooks.length > 0 ? (
             filteredBooks.map((book, index) => {
               const isFavorited = favorites.some(item => item._id === book._id);
-
               return (
                 <motion.div
                   key={book._id}
@@ -189,17 +158,6 @@ const FeaturedBooks = ({ searchTerm = "" }) => {
                       <p className="font-bold text-gray-600">Rs: {book.price}</p>
                     </div>
                   </div>
-
-                  <div className="px-3 pb-3 flex justify-between gap-3">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 bg-yellow-600 text-white px-4 py-3 rounded-lg hover:bg-yellow-700 transition"
-                      onClick={checkoutHandler}
-                    >
-                      CheckOut
-                    </motion.button>
-                  </div>
                 </motion.div>
               );
             })
@@ -215,3 +173,18 @@ const FeaturedBooks = ({ searchTerm = "" }) => {
 };
 
 export default FeaturedBooks;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
