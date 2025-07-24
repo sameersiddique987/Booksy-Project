@@ -138,7 +138,7 @@ const FeaturedBooks = ({ searchTerm = "" }) => {
 
                     <button
                       onClick={() => toggleFavorite(book)}
-                      className={`absolute top-4 right-4 text-2xl bg-black/40 rounded-full p-2 transition duration-300 ${
+                      className={` cursor-pointer absolute top-4 right-4 text-2xl bg-black/40 rounded-full p-2 transition duration-300 ${
                         isFavorited ? 'text-red-500' : 'text-white'
                       }`}
                     >
@@ -147,7 +147,7 @@ const FeaturedBooks = ({ searchTerm = "" }) => {
 
                     <button
                       onClick={() => addToCart(book)}
-                      className="absolute top-16 right-4 text-2xl text-white bg-black/40 rounded-full p-2 hover:text-yellow-500 transition duration-300"
+                      className="cursor-pointer absolute top-16 right-4 text-2xl text-white bg-black/40 rounded-full p-2 hover:text-yellow-500 transition duration-300"
                     >
                       <FontAwesomeIcon icon={faShoppingCart} />
                     </button>
